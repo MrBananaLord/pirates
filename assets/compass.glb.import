@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/compass.glb-30430f6b3defa77baf064ce72dc440dd.scn"
+path="res://.import/Compass.glb-1eba2359e5be3d701652921f9815e26f.scn"
 
 [deps]
 
-source_file="res://assets/compass.glb"
-dest_files=[ "res://.import/compass.glb-30430f6b3defa77baf064ce72dc440dd.scn" ]
+source_file="res://assets/Compass.glb"
+dest_files=[ "res://.import/Compass.glb-1eba2359e5be3d701652921f9815e26f.scn" ]
 
 [params]
 
