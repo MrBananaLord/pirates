@@ -4,7 +4,8 @@ var strength = 20
 var direction = 0
 
 func _ready():
-	change_direction()
+	# change_direction()
+	pass
 
 func change_direction():
 	strength = [1,2,3][randi() % 3]
@@ -12,4 +13,5 @@ func change_direction():
 	$Label.text = "Direction: " + str(direction) + " , Strength: " + str(strength)
 
 func _on_WindChangeTimer_timeout():
-	change_direction()
+	# change_direction()
+	pass

@@ -7,14 +7,29 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_pressed("sail_up_1"):
-		$Pivot/Ship.sailsUp()
+		$Ship.sailsUp()
 	if Input.is_action_pressed("sail_down_1"):
-		$Pivot/Ship.sailsDown()
+		$Ship.sailsDown()
 	if Input.is_action_pressed("rudder_portside_1"):
-		$Pivot/Ship.rudderTurnStarboard()
+		$Ship.rudderTurnStarboard()
 	if Input.is_action_pressed("rudder_starboard_1"):
-		$Pivot/Ship.rudderTurnPortside()
-	if Input.is_action_pressed("sail_clockwise_1"):
-		$Pivot/Ship.sailClockwise()
-	if Input.is_action_pressed("sail_counterclockwise_1"):
-		$Pivot/Ship.sailCounterclockwise()
+		$Ship.rudderTurnPortside()
+#	if Input.is_action_pressed("sail_clockwise_1"):
+#		$Ship.sailClockwise()
+#	if Input.is_action_pressed("sail_counterclockwise_1"):
+#		$Ship.sailCounterclockwise()
+
+
+func applyWind(windAngle, windStrength, delta):
+	var sailAngle = $Ship/Hull/Mast.global_transform.basis.z.angle_to(Vector3.BACK)
+	var strength = abs(sin(0 - sailAngle)) * windStrength * $Ship.sailFold
+
+	var direction = transform.basis.z
+	var velocity = Vector3.ZERO
+	
+	velocity.x = strength * direction.x * delta
+	velocity.z = strength * direction.z * delta
+	velocity.y -= 1000 * delta
+	
+	rotate_y(- $Ship.rudderAngle / 50)
+	move_and_slide(velocity.rotated(transform.basis.y, $Ship.rudderAngle * delta), Vector3.UP)
