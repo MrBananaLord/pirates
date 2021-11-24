@@ -1,37 +1,42 @@
 extends Spatial
 
-var sails = [$"Sail 0", $"Sail 1", $"Sail 2"]
-var activeSailIndex = 0
-var rudderRotationSpeed = 1
+var initialSailScale = $Hull/Mast/Sail.scale
+var sailFold = 100
+var sailFoldSpeed = 1
+var rudderRotationSpeed = deg2rad(1)
+var mastRotationSpeed = deg2rad(1)
 var rudderAngle = 0
 
 func _ready():
-	_setActiveSail(1)
+	_setSailFold(0)
 
 func sailsUp():
-	if activeSailIndex + 1 < sails.size():
-		_setActiveSail(activeSailIndex + 1)
-
+	if sailFold + sailFoldSpeed <= 100:
+		_setSailFold(sailFold + sailFoldSpeed)
+	
 func sailsDown():
-	if activeSailIndex - 1 >= 0:
-		_setActiveSail(activeSailIndex - 1)
+	if sailFold - sailFoldSpeed >= 0:
+		_setSailFold(sailFold - sailFoldSpeed)
 
-func rudderTurnStarboard():
-	if rudderAngle - deg2rad(rudderRotationSpeed) >= deg2rad(-45):
-		_turnRudderBy(-deg2rad(rudderRotationSpeed))
+func rudderTurnStarboard():	
+	if rudderAngle - rudderRotationSpeed >= deg2rad(-45):
+		_turnRudderBy(-rudderRotationSpeed)
 	
 func rudderTurnPortside():
-	if rudderAngle + deg2rad(rudderRotationSpeed) <= deg2rad(45):
-		_turnRudderBy(deg2rad(rudderRotationSpeed))
+	if rudderAngle + rudderRotationSpeed <= deg2rad(45):
+		_turnRudderBy(rudderRotationSpeed)
 	
-func _setActiveSail(index):
-	activeSailIndex = index
-	 
-	for sail in sails: 
-		sail.hide()
+func _setSailFold(fold):
+	sailFold = fold
+	print(fold / 100.0)
+	$Hull/Mast/Sail.scale = initialSailScale * (fold / 100.0)
+
+func sailClockwise():
+	$Hull/Mast.rotate_y(-mastRotationSpeed)
 	
-	sails[activeSailIndex].show()
+func sailCounterclockwise():
+	$Hull/Mast.rotate_y(mastRotationSpeed)
 
 func _turnRudderBy(radAngle):
 	rudderAngle += radAngle
-	$Rudder.rotate_y(radAngle)
+	$Hull/Rudder.rotate_y(radAngle)
