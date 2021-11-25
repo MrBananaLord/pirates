@@ -14,10 +14,10 @@ func _physics_process(delta):
 		$Ship.rudderTurnStarboard()
 	if Input.is_action_pressed("rudder_starboard_1"):
 		$Ship.rudderTurnPortside()
-#	if Input.is_action_pressed("sail_clockwise_1"):
-#		$Ship.sailClockwise()
-#	if Input.is_action_pressed("sail_counterclockwise_1"):
-#		$Ship.sailCounterclockwise()
+	if Input.is_action_pressed("sail_clockwise_1"):
+		$Ship.sailClockwise()
+	if Input.is_action_pressed("sail_counterclockwise_1"):
+		$Ship.sailCounterclockwise()
 
 
 func applyWind(windAngle, windStrength, delta):
@@ -31,5 +31,5 @@ func applyWind(windAngle, windStrength, delta):
 	velocity.z = strength * direction.z * delta
 	velocity.y -= 1000 * delta
 	
-	rotate_y(- $Ship.rudderAngle / 50)
-	move_and_slide(velocity.rotated(transform.basis.y, $Ship.rudderAngle * delta), Vector3.UP)
+	rotate_y(- $Ship.rudderAngle * delta)
+	move_and_slide(velocity, Vector3.UP)
