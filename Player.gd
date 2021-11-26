@@ -20,15 +20,15 @@ func _physics_process(delta):
 		$Ship.sailCounterclockwise()
 
 
-func applyWind(windAngle, windStrength, delta):
+func applyWind(wind, delta):
 	var sailAngle = $Ship/Hull/Mast.global_transform.basis.z.angle_to(Vector3.BACK)
-	var strength = abs(sin(0 - sailAngle)) * windStrength * $Ship.sailFold
+	var strength = abs(sin(0 - sailAngle)) * $Ship.sailFold * wind.force
 
 	var direction = transform.basis.z
 	var velocity = Vector3.ZERO
 	
-	velocity.x = strength * direction.x * delta
-	velocity.z = strength * direction.z * delta
+	velocity.x = strength.x * direction.x * delta
+	velocity.z = strength.z * direction.z * delta
 	velocity.y -= 1000 * delta
 	
 	rotate_y(- $Ship.rudderAngle * delta)
