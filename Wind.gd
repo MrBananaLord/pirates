@@ -2,10 +2,7 @@ extends Control
 
 var strength = 20
 var direction = 0
-
-func _ready():
-	# change_direction()
-	pass
+var force = Vector3(1,0,1)
 
 func change_direction():
 	strength = [1,2,3][randi() % 3]

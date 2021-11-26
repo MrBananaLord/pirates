@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Compass.glb-1eba2359e5be3d701652921f9815e26f.scn"
+path="res://.import/Arrow.glb-203b9543cb7aa5eeda4c0eef7d9d3204.scn"
 
 [deps]
 
-source_file="res://assets/Compass.glb"
-dest_files=[ "res://.import/Compass.glb-1eba2359e5be3d701652921f9815e26f.scn" ]
+source_file="res://assets/Arrow.glb"
+dest_files=[ "res://.import/Arrow.glb-203b9543cb7aa5eeda4c0eef7d9d3204.scn" ]
 
 [params]
 
@@ -21,7 +21,7 @@ materials/location=1
 materials/storage=1
 materials/keep_on_reimport=true
 meshes/octahedral_compression=true
-meshes/compress=true
+meshes/compress=4286
 meshes/ensure_tangents=true
 meshes/storage=0
 meshes/light_baking=0

@@ -11,8 +11,4 @@ __meta__ = {
 [node name="WindChangeTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
-
 [connection signal="timeout" from="WindChangeTimer" to="." method="_on_WindChangeTimer_timeout"]
