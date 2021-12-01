@@ -2,7 +2,7 @@ extends Node
 
 const Player = preload("res://Player.tscn")
 
-var players = {
+onready var players = {
 	0: $Player
 }
 
