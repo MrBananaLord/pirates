@@ -1,14 +1,14 @@
 extends Control
 
-var strength = 20
-var direction = 0
-var force = Vector3(1,0,1)
+var force = Vector3.ZERO
+var rng = RandomNumberGenerator.new()
 
-func change_direction():
-	strength = [1,2,3][randi() % 3]
-	direction = rand_range(0, TAU)
-	$Label.text = "Direction: " + str(direction) + " , Strength: " + str(strength)
+func _ready():
+	change_wind()
+	
+func change_wind():
+	force.x = rng.randi_range(-10,10)
+	force.z = rng.randi_range(-10,10)
 
 func _on_WindChangeTimer_timeout():
-	# change_direction()
-	pass
+	change_wind()

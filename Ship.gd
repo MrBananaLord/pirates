@@ -1,48 +1,48 @@
 extends Spatial
 
-var initialSailScale = $Hull/Mast/Sail.scale
-var sailFold = 100 setget , getSailFold
-var sailFoldSpeed = 1
-var rudderRotationSpeed = deg2rad(1)
-var mastRotationSpeed = deg2rad(1)
-var rudderAngle = 0 setget , getRudderAngle
+var initial_sail_scale = $Hull/Mast/Sail.scale
+var sail_fold = 100 setget set_sail_fold, get_sail_fold
+var sail_fold_speed = 1
+var rudder_rotation_speed = deg2rad(1)
+var mast_rotation_speed = deg2rad(1)
+var rudder_angle = 0 setget , get_rudder_angle
 
 func _ready():
-	_setSailFold(0)
+	set_sail_fold(0)
 
-func getSailFold():
-	return sailFold
+func get_sail_fold():
+	return sail_fold
 	
-func getRudderAngle():
-	return rudderAngle
+func get_rudder_angle():
+	return rudder_angle
 
-func sailsUp():
-	if sailFold + sailFoldSpeed <= 100:
-		_setSailFold(sailFold + sailFoldSpeed)
+func sails_up():
+	if sail_fold + sail_fold_speed <= 100:
+		set_sail_fold(sail_fold + sail_fold_speed)
 	
-func sailsDown():
-	if sailFold - sailFoldSpeed >= 0:
-		_setSailFold(sailFold - sailFoldSpeed)
+func sails_down():
+	if sail_fold - sail_fold_speed >= 0:
+		set_sail_fold(sail_fold - sail_fold_speed)
 
-func rudderTurnStarboard():	
-	if rudderAngle - rudderRotationSpeed >= deg2rad(-45):
-		_turnRudderBy(-rudderRotationSpeed)
+func rudder_turn_starboard():	
+	if rudder_angle - rudder_rotation_speed >= deg2rad(-45):
+		_turnRudderBy(-rudder_rotation_speed)
 	
-func rudderTurnPortside():
-	if rudderAngle + rudderRotationSpeed <= deg2rad(45):
-		_turnRudderBy(rudderRotationSpeed)
+func rudder_turn_portside():
+	if rudder_angle + rudder_rotation_speed <= deg2rad(45):
+		_turnRudderBy(rudder_rotation_speed)
 	
-func _setSailFold(fold):
-	sailFold = fold
-	$Hull/Mast/Sail.scale = initialSailScale * (fold / 100.0)
+func set_sail_fold(fold):
+	sail_fold = fold
+	$Hull/Mast/Sail.scale = initial_sail_scale * (fold / 100.0)
 
-func sailClockwise():
-	$Hull/Mast.rotate_y(-mastRotationSpeed)
+func sail_clockwise():
+	$Hull/Mast.rotate_y(-mast_rotation_speed)
 	
-func sailCounterclockwise():
-	$Hull/Mast.rotate_y(mastRotationSpeed)
+func sail_counterclockwise():
+	$Hull/Mast.rotate_y(mast_rotation_speed)
 
 func _turnRudderBy(radAngle):
-	rudderAngle += radAngle
+	rudder_angle += radAngle
 	$Hull/Rudder.rotate_y(radAngle)
 	
