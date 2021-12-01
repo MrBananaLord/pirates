@@ -1,19 +1,19 @@
 extends KinematicBody
 
-var playerId = 1
+var playerId = 0
 var velocity = Vector3.ZERO
 
 func _ready():
 	pass
 
 func _physics_process(delta):
-	if Input.is_action_pressed("sail_up_1"):
+	if Input.is_action_pressed("sail_up_%s" % playerId):
 		$Ship.sailsUp()
-	if Input.is_action_pressed("sail_down_1"):
+	if Input.is_action_pressed("sail_down_%s" % playerId):
 		$Ship.sailsDown()
-	if Input.is_action_pressed("rudder_portside_1"):
+	if Input.is_action_pressed("rudder_portside_%s" % playerId):
 		$Ship.rudderTurnStarboard()
-	if Input.is_action_pressed("rudder_starboard_1"):
+	if Input.is_action_pressed("rudder_starboard_%s" % playerId):
 		$Ship.rudderTurnPortside()
 
 	var hullAngle = $Ship/Hull.global_transform.basis.z.angle_to(Wind.force)
