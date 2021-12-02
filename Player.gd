@@ -4,9 +4,10 @@ const Cannonball = preload("res://Cannonball.tscn")
 
 var playerId = 0
 var velocity = Vector3.ZERO
+var gravity = Vector3.DOWN * 10
 
 func _ready():
-	global_transform.origin.y += 10
+	global_transform.origin.y += 50
 
 func _physics_process(delta):
 	if Input.is_action_pressed("sail_up_%s" % playerId):
@@ -23,18 +24,22 @@ func _physics_process(delta):
 		_fire_starboard()
 
 	var hull_angle = transform.basis.z.angle_to(Wind.force)
-	var strength = abs(cos(hull_angle / 2)) * Wind.force.length() * $Ship.sail_fold / 100
+	var strength = abs(cos(hull_angle / 2)) * Wind.force.length() * $Ship.sail_fold
 	var direction = transform.basis.z.normalized().rotated(transform.basis.y.normalized(), $Ship.rudder_angle * delta)
-	var velocity = direction * strength
-	velocity.y -= 100 * delta
+	velocity.x = (direction * strength).x * delta
+	velocity.z = (direction * strength).z * delta
 	
 	Debugger.draw("wind", transform.origin + Vector3(0,0,0), Wind.force, Color(255,0,0))
 	Debugger.draw("velocity", transform.origin + Vector3(0,0,0), velocity)
 		
 	rotate_y(- $Ship.rudder_angle * delta)
-	move_and_slide(velocity, direction)
-#	add_torque($Ship.rudder_angle * velocity.rotated(Vector3.FORWARD, PI / 2) * 10)
-#	add_force(velocity, transform.origin)
+	move_and_slide(velocity, Vector3.UP * 10)
+	
+	print(is_on_floor())
+	if is_on_floor():
+		velocity.y = gravity.y * delta
+	else: 
+		velocity.y += gravity.y * delta
 
 func _fire_starboard():
 	_fire(- PI / 2, -2)
