@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Needle.glb-f641af0c4faed1374f6318e102de90e9.scn"
+path="res://.import/needle.glb-0f6490c317f1b8cb4c6ecb70aae846c5.scn"
 
 [deps]
 
-source_file="res://assets/Needle.glb"
-dest_files=[ "res://.import/Needle.glb-f641af0c4faed1374f6318e102de90e9.scn" ]
+source_file="res://assets/needle.glb"
+dest_files=[ "res://.import/needle.glb-0f6490c317f1b8cb4c6ecb70aae846c5.scn" ]
 
 [params]
 

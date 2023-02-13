@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/Ship.glb-84bab53b6a254196f246427720d8071f.scn"
+path="res://.import/ship.glb-419c3ead70c28c99916b42b27aec6223.scn"
 
 [deps]
 
-source_file="res://assets/Ship.glb"
-dest_files=[ "res://.import/Ship.glb-84bab53b6a254196f246427720d8071f.scn" ]
+source_file="res://assets/ship.glb"
+dest_files=[ "res://.import/ship.glb-419c3ead70c28c99916b42b27aec6223.scn" ]
 
 [params]
 
